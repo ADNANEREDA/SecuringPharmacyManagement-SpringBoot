@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Accueil</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        a { display: inline-block; margin: 6px 12px 6px 0; }
+    </style>
+</head>
+<body>
+    <h2>Bienvenue, <span th:text="${username}"></span> !</h2>
+    <p>Rôle(s) : <b th:text="${roles}"></b></p>
+
+    <p th:if="${admin}"><a th:href="@{/admin}">Page Admin</a></p>
+    <p th:if="${admin or pharmacien or client}"><a th:href="@{/medicaments}">Médicaments</a></p>
+    <p th:if="${admin or pharmacien or caissier}"><a th:href="@{/ventes}">Ventes</a></p>
+
+    <form th:action="@{/logout}" method="post">
+        <button type="submit">Se déconnecter</button>
+    </form>
+</body>
+</html>

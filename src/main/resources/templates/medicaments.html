@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Médicaments</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #2c7a7b; color: white; }
+        form.inline { display: inline; }
+    </style>
+</head>
+<body>
+    <h2>Médicaments</h2>
+    <p><a th:href="@{/home}">← Retour à l'accueil</a></p>
+    <p th:if="${peutModifier}"><a th:href="@{/medicaments/nouveau}">+ Ajouter un médicament</a></p>
+
+    <table>
+        <tr>
+            <th>ID</th><th>Nom</th><th>Description</th><th>Prix (DH)</th>
+            <th>Stock</th><th>Expiration</th><th th:if="${peutModifier}">Actions</th>
+        </tr>
+        <tr th:each="m : ${medicaments}">
+            <td th:text="${m.id}"></td>
+            <td th:text="${m.nom}"></td>
+            <td th:text="${m.description}"></td>
+            <td th:text="${m.prix}"></td>
+            <td th:text="${m.quantite}"></td>
+            <td th:text="${#temporals.format(m.dateExpiration, 'dd/MM/yyyy')}"></td>
+            <td th:if="${peutModifier}">
+                <a th:href="@{/medicaments/{id}/modifier(id=${m.id})}">Modifier</a>
+                <form class="inline" th:if="${admin}" th:action="@{/medicaments/{id}/supprimer(id=${m.id})}" method="post">
+                    <button type="submit">Supprimer</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>

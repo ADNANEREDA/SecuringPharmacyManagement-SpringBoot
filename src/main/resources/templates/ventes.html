@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Ventes</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; max-width: 520px; }
+        select, input { width: 100%; padding: 8px; margin: 4px 0 12px 0; box-sizing: border-box; }
+        button { padding: 10px 20px; background: #2c7a7b; color: white; border: none; cursor: pointer; }
+        .succes { color: green; }
+        .erreur { color: red; }
+    </style>
+</head>
+<body>
+    <h2>Enregistrer une vente</h2>
+    <p><a th:href="@{/home}">← Retour à l'accueil</a></p>
+
+    <p class="succes" th:if="${succes}" th:text="${succes}"></p>
+    <p class="erreur" th:if="${erreur}" th:text="${erreur}"></p>
+
+    <form th:action="@{/ventes}" method="post">
+        <label>Médicament :</label>
+        <select name="medicamentId" required>
+            <option th:each="m : ${medicaments}"
+                    th:value="${m.id}"
+                    th:text="${m.nom + ' - ' + m.prix + ' DH (stock : ' + m.quantite + ')'}">
+            </option>
+        </select>
+
+        <label>Quantité :</label>
+        <input type="number" name="quantite" min="1" value="1" required/>
+
+        <button type="submit">Valider la vente</button>
+    </form>
+</body>
+</html>

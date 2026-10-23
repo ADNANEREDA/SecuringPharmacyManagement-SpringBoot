@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #2c7a7b; color: white; }
+        .role { background: #e6fffa; border-radius: 10px; padding: 2px 8px; margin-right: 4px; font-size: 12px; }
+    </style>
+</head>
+<body>
+    <h2>Page ADMIN : gestion des utilisateurs</h2>
+    <p><a th:href="@{/home}">← Retour à l'accueil</a></p>
+
+    <table>
+        <tr><th>ID</th><th>Utilisateur</th><th>Actif</th><th>Rôles</th></tr>
+        <tr th:each="u : ${users}">
+            <td th:text="${u.id}"></td>
+            <td th:text="${u.username}"></td>
+            <td th:text="${u.enabled} ? 'Oui' : 'Non'"></td>
+            <td><span class="role" th:each="r : ${u.roles}" th:text="${r.name}"></span></td>
+        </tr>
+    </table>
+</body>
+</html>
