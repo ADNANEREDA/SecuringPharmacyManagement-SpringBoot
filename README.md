@@ -11,9 +11,9 @@ Spring Security, Thymeleaf and MySQL.
 ## Roles and Access
 | Username | Password | Role | Access |
 |----------|----------|------|--------|
-| admin | admin123 | ADMIN | Everything |
-| pharma | pharma123 | PHARMACIEN (pharmacist) | Medications (add, edit), sales |
-| caisse | caisse123 | CAISSIER (cashier) | Sales only |
+| admin | adminPW | ADMIN | Everything |
+| pharma | pharmaPW | PHARMACIEN (pharmacist) | Medications (add, edit), sales |
+| caisse | caissePW | CAISSIER (cashier) | Sales only |
 
 ## Features
 - Form-based authentication, passwords hashed with BCrypt
